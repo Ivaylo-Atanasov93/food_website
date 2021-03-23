@@ -25,6 +25,8 @@ class Recipe(models.Model):
     name = models.CharField(max_length=200)
     main_ingredients = models.CharField(max_length=300)
     meal_picture = models.CharField(max_length=200)
+    base_price = models.DecimalField(max_digits=3, decimal_places=2)
+    additional_cost = models.DecimalField(max_digits=3, decimal_places=2, default=0.00)
     origin = models.CharField(max_length=30)
     type = models.CharField(max_length=20, choices=TYPE)
     description = models.TextField(max_length=600)
@@ -38,7 +40,6 @@ class Recipe(models.Model):
 class IngredientQuantity(models.Model):
     INGREDIENTS = [(str(ingredient.id), ingredient.name) for ingredient in Ingredient.objects.all()]
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
-    print(INGREDIENTS)
     ingredient = models.CharField(max_length=10, choices=INGREDIENTS)
     quantity = models.IntegerField()
 
