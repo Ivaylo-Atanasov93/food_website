@@ -37,7 +37,7 @@ class Recipe(models.Model):
         return self.name
 
 
-class IngredientQuantity(models.Model):
+class AddIngredient(models.Model):
     INGREDIENTS = [(str(ingredient.id), ingredient.name) for ingredient in Ingredient.objects.all()]
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
     ingredient = models.CharField(max_length=10, choices=INGREDIENTS)

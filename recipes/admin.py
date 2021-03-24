@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Recipe, Step, Ingredient, IngredientQuantity
+from .models import Recipe, Step, Ingredient, AddIngredient
 
 
 # Register your models here.
@@ -8,11 +8,6 @@ from .models import Recipe, Step, Ingredient, IngredientQuantity
 class IngredientAdmin(admin.ModelAdmin):
     list_display = ('name', 'allergen')
     list_filter = ('name', 'allergen')
-
-
-class IngredientQuantityAdmin(admin.ModelAdmin):
-    list_display = ('ingredient', 'quantity')
-    list_filter = ('ingredient',)
 
 
 class StepAdmin(admin.ModelAdmin):
@@ -26,7 +21,7 @@ class StepInLine(admin.StackedInline):
 
 
 class IngredientQuantityInLine(admin.StackedInline):
-    model = IngredientQuantity
+    model = AddIngredient
     extra = 0
 
 
@@ -39,7 +34,6 @@ class RecipeAdmin(admin.ModelAdmin):
     ]
 
 
-admin.site.register(IngredientQuantity, IngredientQuantityAdmin)
 admin.site.register(Recipe, RecipeAdmin)
 admin.site.register(Step, StepAdmin)
 admin.site.register(Ingredient, IngredientAdmin)

@@ -40,9 +40,10 @@ INSTALLED_APPS = [
     'payments',
     'recipes',
     'sales',
-    # 'oauth2_provider',
-    'users'
+    'users',
 ]
+
+AUTH_USER_MODEL = 'users.user'  # changes the build-in user model to ours
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -82,7 +83,7 @@ WSGI_APPLICATION = 'manjornio.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'manjornio',
+        'NAME': 'manjorno',
         'USER': 'postgres',
         'PASSWORD': 'tak0vata',
         'HOST': '127.0.0.1',
@@ -92,7 +93,6 @@ DATABASES = {
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
-# AUTH_USER_MODEL = 'users.User'
 
 AUTH_PASSWORD_VALIDATORS = [
     {
