@@ -6,12 +6,14 @@ User = get_user_model()
 
 
 class UserAdminCreationForm(forms.ModelForm):
+    email = forms.EmailField()
+    full_name = forms.CharField(max_length=255)
     password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
     password2 = forms.CharField(label='Password confirmation', widget=forms.PasswordInput)
 
     class Meta:
         model = User
-        fields = ['email', 'full_name']
+        fields = ['email', 'full_name', 'password1', 'password2']
 
     def clean_password2(self):
         password1 = self.cleaned_data.get('password1')

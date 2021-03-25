@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'recipes',
     'sales',
     'users',
+    'index',
 ]
 
 AUTH_USER_MODEL = 'users.user'  # changes the build-in user model to ours

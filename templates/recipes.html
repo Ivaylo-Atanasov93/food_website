@@ -1,0 +1,38 @@
+{% extends 'partials/main.html' %}
+{% load static %}
+
+
+{% block content %}
+    <div class="row">
+        <div class="col-lg-4">
+            <img class="thumbnail" src="{% static 'images/img_placeholder.png' %}">
+            <div class="box-element product">
+                <h6><strong>Recipe</strong></h6>
+                <hr>
+                <p>Some not tooo long description</p>
+                <button class="btn btn-outline-secondary add-btn">Add to box</button>
+                <a class="btn btn-outline-success" href="#">View</a>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <img class="thumbnail" src="{% static 'images/img_placeholder.png' %}">
+            <div class="box-element product">
+                <h6><strong>Recipe</strong></h6>
+                <hr>
+                <p>Some not tooo long description</p>
+                <button class="btn btn-outline-secondary add-btn">Add to box</button>
+                <a class="btn btn-outline-success" href="#">View</a>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <img class="thumbnail" src="{% static 'images/img_placeholder.png' %}">
+            <div class="box-element product">
+                <h6><strong>Recipe</strong></h6>
+                <hr>
+                <p>Some not tooo long description</p>
+                <button class="btn btn-outline-secondary add-btn">Add to box</button>
+                <a class="btn btn-outline-success" href="#">View</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
