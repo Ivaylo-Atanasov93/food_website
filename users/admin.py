@@ -5,6 +5,8 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from .forms import UserAdminCreationForm, UserAdminChangeForm
 
 # Register your models here.
+from .models import Customer
+
 User = get_user_model()
 
 
@@ -37,4 +39,4 @@ class UserAdmin(BaseUserAdmin):
 
 
 admin.site.register(User, UserAdmin)
-
+admin.site.register(Customer)

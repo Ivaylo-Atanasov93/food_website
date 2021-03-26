@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'sales',
     'users',
     'index',
+
 ]
 
 AUTH_USER_MODEL = 'users.user'  # changes the build-in user model to ours
@@ -56,7 +57,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'manjornio.urls'
+ROOT_URLCONF = 'manjorno_v2.urls'
 
 TEMPLATES = [
     {
@@ -76,7 +77,7 @@ TEMPLATES = [
 
 ]
 
-WSGI_APPLICATION = 'manjornio.wsgi.application'
+WSGI_APPLICATION = 'manjorno_v2.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
@@ -84,7 +85,7 @@ WSGI_APPLICATION = 'manjornio.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'manjorno',
+        'NAME': 'manjorno_ver_2',
         'USER': 'postgres',
         'PASSWORD': 'tak0vata',
         'HOST': '127.0.0.1',
@@ -130,3 +131,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
+
+MEDIA_URL = '/images/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')

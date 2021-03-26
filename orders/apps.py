@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
 
-class BoxesConfig(AppConfig):
+class OrdersConfig(AppConfig):
     name = 'orders'
