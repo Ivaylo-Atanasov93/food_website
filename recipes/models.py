@@ -8,7 +8,7 @@ class BaseMealPrice(models.Model):
     price = models.FloatField()
 
     def __str__(self):
-        return str(self.price)
+        return f'Base meal price'
 
 
 class Ingredient(models.Model):

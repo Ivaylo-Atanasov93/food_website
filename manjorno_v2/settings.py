@@ -45,7 +45,7 @@ INSTALLED_APPS = [
 
 ]
 
-AUTH_USER_MODEL = 'users.user'  # changes the build-in user model to ours
+# AUTH_USER_MODEL = 'users.user'  # changes the build-in user model to ours
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
