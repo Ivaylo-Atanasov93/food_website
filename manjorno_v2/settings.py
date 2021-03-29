@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'sales',
     'users',
     'index',
+    'prices',
 
 ]
 

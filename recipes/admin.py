@@ -1,10 +1,8 @@
 from django.contrib import admin
-from .models import Recipe, Step, Ingredient, AddIngredient, BaseMealPrice
+from .models import Recipe, Step, Ingredient, AddIngredient
 
 
 # Register your models here.
-class BaseMealPriceAdmin(admin.ModelAdmin):
-    list_display = ('price',)
 
 
 class IngredientAdmin(admin.ModelAdmin):
@@ -36,7 +34,6 @@ class RecipeAdmin(admin.ModelAdmin):
     ]
 
 
-admin.site.register(BaseMealPrice, BaseMealPriceAdmin)
 admin.site.register(Recipe, RecipeAdmin)
 admin.site.register(Step, StepAdmin)
 admin.site.register(Ingredient, IngredientAdmin)

@@ -4,13 +4,6 @@ from django.db import models
 # Create your models here.
 
 
-class BaseMealPrice(models.Model):
-    price = models.FloatField()
-
-    def __str__(self):
-        return f'Base meal price'
-
-
 class Ingredient(models.Model):
     name = models.CharField(max_length=255)
     picture = models.ImageField(upload_to='ingredient_images', null=True, blank=True)
@@ -42,7 +35,6 @@ class Recipe(models.Model):
     name = models.CharField(max_length=255)
     main_ingredients = models.CharField(max_length=300)
     meal_picture = models.ImageField(upload_to='recipes_images', null=True, blank=True)
-    base_price = models.ForeignKey(BaseMealPrice, on_delete=models.SET_NULL, null=True)
     additional_cost = models.DecimalField(max_digits=3, decimal_places=2, default=0.00)
     origin = models.CharField(max_length=255)
     type = models.CharField(max_length=255, choices=TYPE)

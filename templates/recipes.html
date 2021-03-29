@@ -4,35 +4,43 @@
 
 {% block content %}
     <div class="row">
-        <div class="col-lg-4">
-            <img class="thumbnail" src="{% static 'images/img_placeholder.png' %}">
-            <div class="box-element product">
-                <h6><strong>Recipe</strong></h6>
-                <hr>
-                <p>Some not tooo long description</p>
-                <button class="btn btn-outline-secondary add-btn">Add to box</button>
-                <a class="btn btn-outline-success" href="#">View</a>
+        <div class="col-lg-12">
+            <div class="box-element">
+                <div class="box-details">
+                    <h3>Your Manjorno Box includes 5 recipes for 2 people.</h3>
+                </div>
+                <br>
+                Chosen meals:
+                <br>
+                <div class="cart-row">
+                    <div style="flex:2"><strong>Meal 1</strong></div>
+                    <div style="flex:2"><strong>Meal 2</strong></div>
+                    <div style="flex:2"><strong>Meal 3</strong></div>
+                    <div style="flex:2"><strong>Meal 4</strong></div>
+                    <div style="flex:2"><strong>Meal 5</strong></div>
+                </div>
             </div>
         </div>
-        <div class="col-lg-4">
-            <img class="thumbnail" src="{% static 'images/img_placeholder.png' %}">
-            <div class="box-element product">
-                <h6><strong>Recipe</strong></h6>
-                <hr>
-                <p>Some not tooo long description</p>
-                <button class="btn btn-outline-secondary add-btn">Add to box</button>
-                <a class="btn btn-outline-success" href="#">View</a>
+    </div>
+    <div class="row">
+        {% for meal in products %}
+            <div class="col-lg-4">
+                {% if meal.meal_picture %}
+                    <img class="thumbnail" src="{{ meal.meal_picture.url }}">
+                {% else %}
+                    <img class="thumbnail" src="{% static 'images/img_placeholder.png' %}">
+                {% endif %}
+                <div class="box-element product">
+                    <h6><strong>{{ meal.name }}</strong></h6>
+                    <hr>
+                    <p>{{ meal.description }}</p>
+                    {% if user.customer.user.is_authenticated %}
+                        <button class="btn btn-outline-secondary add-btn">Add to box</button>
+                        <a class="btn btn-outline-success" href="#">View</a>
+                    {% endif %}
+                    <p style="margin-top: 30px"><strong>{{ meal.cooking_time }} min</strong></p>
+                </div>
             </div>
-        </div>
-        <div class="col-lg-4">
-            <img class="thumbnail" src="{% static 'images/img_placeholder.png' %}">
-            <div class="box-element product">
-                <h6><strong>Recipe</strong></h6>
-                <hr>
-                <p>Some not tooo long description</p>
-                <button class="btn btn-outline-secondary add-btn">Add to box</button>
-                <a class="btn btn-outline-success" href="#">View</a>
-            </div>
-        </div>
+        {% endfor %}
     </div>
 {% endblock %}
