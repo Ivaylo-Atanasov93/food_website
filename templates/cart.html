@@ -28,7 +28,7 @@
                     <div style="flex:2"></div>
                     <div style="flex:2"><strong>Item</strong></div>
                     <div style="flex:1"><strong>Price</strong></div>
-                    <div style="flex:1"><strong>Quantity</strong></div>
+                    <div style="flex:1"><strong>Delivery</strong></div>
                     <div style="flex:1"><strong>Total</strong></div>
                 </div>
                 {% for item in items %}
@@ -37,12 +37,7 @@
                         <div style="flex:2">{{ item.product }} for {{ item.product.meal_size }} people.</div>
                             <div style="flex:1">£ {{ item.product.get_box_base_price|floatformat:2 }}</div>
                         <div style="flex:1">
-                            <p class="quantity">{{ item.quantity }}</p>
-                            <div class="quantity">
-                                <img class="chg-quantity" src="{% static 'images/arrow-up.png' %}">
-
-                                <img class="chg-quantity" src="{% static 'images/arrow-down.png' %}">
-                            </div>
+                            <p>£ {{ delivery_price }}</p>
                         </div>
                         <div style="flex:1"><p>£ {{ item.get_total|floatformat:2 }}</p></div>
                     </div>

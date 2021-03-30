@@ -1,6 +1,6 @@
 from django.db import models
 
-from prices.models import BaseMealPrice
+from prices.models import BaseMealPrice, DeliveryPrice
 from users.models import User
 from recipes.models import Recipe
 
@@ -37,7 +37,6 @@ class Box(models.Model):
         base_box_price = meal_price * multiplier
         return base_box_price
 
-
     def __str__(self):
         return f'{self.number_of_meals} days box'
 
@@ -73,7 +72,6 @@ class Order(models.Model):
     def get_total_price(self):
         order_items = self.orderitem_set.all()
         total = sum([item.get_total for item in order_items])
-        print(total)
         return total
 
     def __str__(self):
@@ -81,15 +79,14 @@ class Order(models.Model):
 
 
 class OrderItem(models.Model):
-    product = models.ForeignKey(Box, on_delete=models.SET_NULL, blank=True, null=True)
-    order = models.ForeignKey(Order, on_delete=models.SET_NULL, blank=True, null=True)
+    product = models.ForeignKey(Box, on_delete=models.CASCADE, blank=True, null=True)
+    order = models.ForeignKey(Order, on_delete=models.CASCADE, blank=True, null=True)
     quantity = models.IntegerField(default=0, null=True, blank=False)
     date_added = models.DateTimeField(auto_now_add=True)
 
-
     @property
     def get_total(self):
-        total = self.product.get_box_base_price * self.quantity
+        total = (self.product.get_box_base_price * self.quantity) + DeliveryPrice.objects.all()[0].price
         return total
 
 
