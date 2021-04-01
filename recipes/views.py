@@ -18,7 +18,7 @@ def recipes(request):
 
     else:
         order = {'get_total_items': 0, 'get_total_price': 0}
-        cart_items = order['get_cart_items']
+        cart_items = order['get_total_items']
         chosen_meals = ''
         meal_ids = []
 

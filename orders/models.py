@@ -59,6 +59,7 @@ class ChoseMeals(models.Model):
 class Order(models.Model):
     customer = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True)
     date_ordered = models.DateTimeField(auto_now_add=True)
+    is_shipping = models.BooleanField(default=True)
     complete = models.BooleanField(default=False, null=True, blank=False)
     transaction_id = models.CharField(max_length=255, blank=True, null=True)
 
@@ -73,6 +74,10 @@ class Order(models.Model):
         order_items = self.orderitem_set.all()
         total = sum([item.get_total for item in order_items])
         return total
+
+    @property
+    def shipping(self):
+        return self.is_shipping
 
     def __str__(self):
         return str(self.transaction_id)
@@ -92,10 +97,11 @@ class OrderItem(models.Model):
 
 class DeliveryInformation(models.Model):
     customer = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True)
-    order = models.ForeignKey(Box, on_delete=models.SET_NULL, blank=True, null=True)
+    order = models.ForeignKey(Order, on_delete=models.SET_NULL, blank=True, null=True)
     address = models.CharField(max_length=255)
     city = models.CharField(max_length=255)
     postcode = models.CharField(max_length=255)
+    phone_number = models.CharField(max_length=255)
     day_added = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
