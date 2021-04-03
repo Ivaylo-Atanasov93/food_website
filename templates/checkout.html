@@ -95,15 +95,7 @@
                 'city': form.city.value,
                 'postcode': form.postcode.value,
                 'phone_number': form.phone_number.value,
-                {#'country': null,#}
             }
-
-            {#if (shipping != 'False') {#}
-            {#    shippingInfo.address = form.address.value#}
-            {#    shippingInfo.city = form.city.value#}
-            {#    shippingInfo.postcode = form.postcode.value#}
-            {#    shippingInfo.phone_number = form.phone_number.value#}
-
 
             var url = '/cart/process_order/'
             fetch(url, {
