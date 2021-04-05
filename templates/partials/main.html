@@ -32,10 +32,13 @@
         const csrftoken = getToken('csrftoken');
     </script>
 </head>
+<header>
+    <div>
+        {% include 'partials/navbar.html' %}
+    </div>
+</header>
 <body>
-<div>
-    {% include 'partials/navbar.html' %}
-</div>
+
 
 <div class="container">
     {% block content %}
@@ -43,9 +46,9 @@
     {% endblock %}
 </div>
 
-<div>
+<footer>
     {% include 'partials/footer.html' %}
-</div>
+</footer>
 
 
 <!-- JavaScript Bundle with Popper -->
