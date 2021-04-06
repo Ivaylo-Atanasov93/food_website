@@ -1,6 +1,9 @@
 {% extends 'partials/main.html' %}
 {% load static %}
 
+{% block styles %}
+
+{% endblock %}
 
 {% block content %}
     {% if user.customer.user.is_authenticated %}
@@ -8,7 +11,8 @@
             <div class="col-lg-12">
                 <div class="box-element">
                     <div class="box-details">
-                        <h3>Your Manjorno Box includes {{ 0 }} recipes for {{ 0 }} people.</h3>
+                        <h3>Your Manjorno Box includes {{  object.number_of_meals }} recipes for {{ object.meal_size }}
+                            people.</h3>
                     </div>
                     <br>
                     Chosen meals:
@@ -41,32 +45,4 @@
             </div>
         </div>
     {% endif %}
-    <div class="row">
-        {% for meal in products %}
-            <div class="col-lg-4">
-                {% if meal.meal_picture %}
-                    <img class="thumbnail" src="{{ meal.meal_picture.url }}">
-                {% else %}
-                    <img class="thumbnail" src="{% static 'images/img_placeholder.png' %}">
-                {% endif %}
-                <div class="box-element product">
-                    <h6><strong>{{ meal.name }}</strong></h6>
-                    <hr>
-                    <p>{{ meal.description }}</p>
-                    {% if user.customer.user.is_authenticated %}
-                        <button data-product={{ meal.id }} data-action="add"
-                                class="btn btn-outline-secondary add-btn update-cart">
-                            {% if meal.id in meal_ids %}
-                                Already in
-                            {% else %}
-                                Add to box
-                            {% endif %}
-                        </button>
-                        <a class="btn btn-outline-success" href="#">View</a>
-                    {% endif %}
-                    <p style="margin-top: 30px"><strong>{{ meal.cooking_time }} min</strong></p>
-                </div>
-            </div>
-        {% endfor %}
-    </div>
 {% endblock %}

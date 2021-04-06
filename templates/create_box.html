@@ -1,0 +1,19 @@
+{% extends 'partials/main.html' %}
+{% load static %}
+
+{% block styles %}
+
+{% endblock %}
+
+{% block content %}
+    <form method="post" class="box-form" action={% url 'create_box' %}>
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.meal_size }}
+        </div>
+        <div class="form-group">
+            {{ form.number_of_meals }}
+        </div>
+        <button class="btn btn-success" type="submit">See your Box</button>
+    </form>
+{% endblock %}

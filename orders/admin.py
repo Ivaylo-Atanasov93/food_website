@@ -1,22 +1,8 @@
 from django.contrib import admin
-from .models import Box, ChoseMeals, OrderItem, DeliveryInformation, Order
+from .models import OrderItem, DeliveryInformation, Order
 
 
 # Register your models here
-
-
-class ChosenMealsInLine(admin.StackedInline):
-    model = ChoseMeals
-    extra = 0
-
-
-class BoxAdmin(admin.ModelAdmin):
-    list_display = ('meal_size', 'number_of_meals',)
-    list_filter = ('meal_size', 'number_of_meals',)
-    inlines = [
-        ChosenMealsInLine,
-    ]
-
 
 class OrderAdmin(admin.ModelAdmin):
     list_display = ('customer', 'date_ordered', 'complete', 'transaction_id')
@@ -33,8 +19,6 @@ class DeliveryInformationAdmin(admin.ModelAdmin):
     list_filter = ('customer', 'order', 'city', 'day_added')
 
 
-admin.site.register(Box, BoxAdmin)
-admin.site.register(ChoseMeals)
 admin.site.register(Order)
 admin.site.register(OrderItem)
 admin.site.register(DeliveryInformation)
