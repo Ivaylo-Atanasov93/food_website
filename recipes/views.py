@@ -4,7 +4,6 @@ from django.http import JsonResponse
 import json
 
 # Create your views here.
-from django.views.generic import DetailView
 
 from boxes.models import Box, ChoseMeals
 from orders.models import Order, OrderItem
@@ -16,7 +15,7 @@ def recipes(request):
         customer = request.user.customer.user
         order, created = Order.objects.get_or_create(customer=customer, complete=False)
         cart_items = order.get_total_items
-        box = customer.box_set.get_or_create()[0]
+        box = customer.box_set.get_or_create(customer=customer, complete_value=False)[0]
         chosen_meals = box.chosemeals_set.all()
         meal_ids = [meal.recipe.id for meal in chosen_meals]
         meal_quantity = range(1, box.get_meals_number + 1)
@@ -24,14 +23,16 @@ def recipes(request):
     else:
         order = {'get_total_items': 0, 'get_total_price': 0}
         cart_items = order['get_total_items']
+        box = ''
         chosen_meals = ''
         meal_ids = []
         meal_quantity = range(1, 6)
 
-    products = Recipe.objects.all()
+    recipe_list = Recipe.objects.all()
     context = {
+        'box': box,
+        'recipes': recipe_list,
         'cart_items': cart_items,
-        'products': products,
         'meals': chosen_meals,
         'meal_ids': meal_ids,
         'meal_quantity': meal_quantity,

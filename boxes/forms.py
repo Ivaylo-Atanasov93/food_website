@@ -11,7 +11,7 @@ class BoxForm(ModelForm):
         number_of_meals_choices = Box.NUMBER_OF_MEALS
         fields = [
             'meal_size',
-            'number_of_meals'
+            'number_of_meals',
         ]
         widgets = {
             'meal_size': forms.Select(choices=meal_size_choices, attrs={'class': 'form-control'}),

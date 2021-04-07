@@ -11,35 +11,17 @@
             <div class="col-lg-12">
                 <div class="box-element">
                     <div class="box-details">
-                        <h3>Your Manjorno Box includes {{  object.number_of_meals }} recipes for {{ object.meal_size }}
+                        <h3>Your Manjorno Box includes {{ object.number_of_meals }} recipes for {{ object.meal_size }}
                             people.</h3>
                     </div>
                     <br>
                     Chosen meals:
                     <br>
                     <div class="cart-row">
-                        {% for i in meal_quantity %}
-                            <div style="flex:2"><strong>Meal {{ i }}</strong></div>
-                        {% endfor %}
-                    </div>
-                    <div class="cart-row">
-                        {% for chosen_meal in meals %}
-                            <div class="col-lg-2">
-                                {% if chosen_meal.recipe.meal_picture %}
-                                    <img class="box-meal" src="{{ chosen_meal.recipe.meal_picture.url }}">
-                                {% else %}
-                                    <img class="box-meal" src="{% static 'images/img_placeholder.png' %}">
-                                {% endif %}
-                                <div class="box-element product">
-                                    <h6><strong>{{ chosen_meal.recipe.name }}</strong></h6>
-                                    <hr>
-                                    <p>{{ chosen_meal.recipe.description }}</p>
-                                    <button data-product={{ chosen_meal.recipe.id }} data-action="remove"
-                                            class="btn btn-outline-danger update-cart">Remove
-                                    </button>
-                                </div>
-                            </div>
-                        {% endfor %}
+                        <h3>You must chose {{ object.number_of_meals }} recipes from the next menu.</h3>
+                        <a style="float:right;margin:5px" class="btn btn-success" href="{% url 'recipes' %}">
+                            To the recipes &#8250;
+                        </a>
                     </div>
                 </div>
             </div>

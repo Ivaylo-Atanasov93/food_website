@@ -6,6 +6,7 @@ from django.views.generic import DetailView, CreateView
 
 from boxes.models import Box
 from boxes.forms import BoxForm
+from orders.models import Order
 from recipes.models import Recipe
 
 
@@ -14,17 +15,14 @@ class CreateBoxView(LoginRequiredMixin, CreateView):
     form_class = BoxForm
 
     def form_valid(self, form):
+        form.instance.customer = self.request.user
         return super().form_valid(form)
 
 
 class BoxDetailView(LoginRequiredMixin, DetailView):
     template_name = 'box_details.html'
-
-    def get_queryset(self):
-        queryset = {Recipe.objects.all()}
-        return queryset
+    queryset = Box.objects.all()
 
     def get_object(self, queryset=None):
         id_ = self.kwargs.get("id")
         return get_object_or_404(Box, id=id_)
-

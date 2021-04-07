@@ -22,7 +22,12 @@ def cart(request):
         cart_items = order['get_total_items']
         delivery_price = DeliveryPrice.objects.all()[0].price
 
-    context = {'items': items, 'order': order, 'cart_items': cart_items, 'delivery_price': delivery_price}
+    context = {
+        'items': items,
+        'order': order,
+        'cart_items': cart_items,
+        'delivery_price': delivery_price
+    }
     return render(request, 'cart.html', context)
 
 
@@ -44,14 +49,21 @@ def checkout(request):
 def process_order(request):
     transaction_id = datetime.datetime.now().timestamp()
     data = json.loads(request.body)
+
     if request.user.is_authenticated:
         customer = request.user
+        box = customer.box_set.get_or_create(customer=customer, complete_value=False)[0]
         order, created = Order.objects.get_or_create(customer=customer, complete=False)
         total = float(data['form']['total'])
         order.transaction_id = transaction_id
+
         if total == order.get_total_price:
             order.complete = True
+            box.complete_value = True
+
         order.save()
+        box.save()
+
         if order.is_shipping:
             DeliveryInformation.objects.create(
                 customer=customer,
@@ -65,3 +77,4 @@ def process_order(request):
     else:
         print('User is not logged in!')
     return JsonResponse('Payment complete!', safe=False)
+
