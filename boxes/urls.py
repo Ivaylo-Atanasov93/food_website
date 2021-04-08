@@ -1,8 +1,7 @@
 from django.urls import path
 
-from .views import CreateBoxView, BoxDetailView
+from .views import create_or_update_box
 
 urlpatterns = [
-    path('create_box/', CreateBoxView.as_view(), name='create_box'),
-    path('create_box/<int:id>/', BoxDetailView.as_view(), name='box_details'),
+    path('create_box/', create_or_update_box, name='create_box'),
 ]
