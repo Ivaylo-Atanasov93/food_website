@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'index',
     'prices',
     'boxes',
+    'weekly_collection',
 ]
 
 # AUTH_USER_MODEL = 'users.user'  # changes the build-in user model to ours

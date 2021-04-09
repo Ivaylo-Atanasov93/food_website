@@ -41,6 +41,12 @@ class Recipe(models.Model):
     description = models.TextField(max_length=600)
     cooking_time = models.IntegerField()
     difficulty = models.CharField(max_length=20, choices=DIFFICULTY)
+    last_time_added = models.DateTimeField(auto_now_add=False, null=True, blank=True)
+
+    @property
+    def set_last_time_added(self):
+        self.last_time_added = self.last_time_added.today()
+        return self.last_time_added
 
     @property
     def imageURL(self):
