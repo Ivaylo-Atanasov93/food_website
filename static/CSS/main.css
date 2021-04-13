@@ -118,3 +118,17 @@ h1,h2,h3,h4,h5,h6{
 .box-meal{
 	max-height: 100px;
 }
+
+.login-form{
+	max-width: 300px;
+}
+
+.sign-up-form{
+	margin-bottom: 5%;
+	margin-top: 5%;
+}
+
+.create-account-redirect{
+	margin-top: 20%;
+	margin-bottom: 10%;
+}
