@@ -119,10 +119,6 @@ h1,h2,h3,h4,h5,h6{
 	max-height: 100px;
 }
 
-.login-form{
-	max-width: 300px;
-}
-
 .sign-up-form{
 	margin-bottom: 5%;
 	margin-top: 5%;
@@ -131,4 +127,11 @@ h1,h2,h3,h4,h5,h6{
 .create-account-redirect{
 	margin-top: 20%;
 	margin-bottom: 10%;
+}
+
+.form-message{
+	padding: 15px;
+	margin: 15px;
+	background-color: #99ff96;
+	border-radius: 5px;
 }
