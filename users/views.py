@@ -2,11 +2,18 @@ from django.shortcuts import render, redirect
 from .forms import CreateUserForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-
+from manjorno_v2.decorators import unauthenticated_user, allowed_users
 # Create your views here.
 from .models import Customer
 
 
+@allowed_users(allowed_roles=['customer', 'delivery', 'admin'])
+def user_profile_view(request):
+    context = {}
+    return render(request, 'user.html', context)
+
+
+@unauthenticated_user
 def login_view(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -26,6 +33,7 @@ def logout_view(request):
     return redirect('login')
 
 
+@unauthenticated_user
 def sign_up_view(request):
     form = CreateUserForm()
 
