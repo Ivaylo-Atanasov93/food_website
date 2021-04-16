@@ -135,3 +135,25 @@ h1,h2,h3,h4,h5,h6{
 	background-color: #99ff96;
 	border-radius: 5px;
 }
+
+.navbar-brand{
+	max-width: 200px;
+}
+
+.navbar-alignment{
+	margin-left: 200px;
+}
+
+.navbar{
+	height: 100px;
+}
+
+.logo {
+  position: absolute;
+  z-index: 1;
+  // Use your own values for anything below this line.
+  left: 1px;
+  top: 1px;
+  /*height: 50px;*/
+  width: 200px;
+}
