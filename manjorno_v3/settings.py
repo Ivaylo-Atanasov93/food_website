@@ -59,7 +59,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'manjorno_v2.urls'
+ROOT_URLCONF = 'manjorno_v3.urls'
 
 TEMPLATES = [
     {
@@ -79,7 +79,7 @@ TEMPLATES = [
 
 ]
 
-WSGI_APPLICATION = 'manjorno_v2.wsgi.application'
+WSGI_APPLICATION = 'manjorno_v3.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
@@ -87,7 +87,7 @@ WSGI_APPLICATION = 'manjorno_v2.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'manjorno_ver_2',
+        'NAME': 'manjorno_v3',
         'USER': 'postgres',
         'PASSWORD': 'tak0vata',
         'HOST': '127.0.0.1',

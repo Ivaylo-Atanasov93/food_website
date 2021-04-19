@@ -16,5 +16,6 @@ class BoxAdmin(admin.ModelAdmin):
         ChosenMealsInLine,
     ]
 
+
 admin.site.register(Box, BoxAdmin)
 admin.site.register(ChoseMeals)

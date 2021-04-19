@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .forms import CreateUserForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-from manjorno_v2.decorators import unauthenticated_user, allowed_users
+from manjorno_v3.decorators import unauthenticated_user, allowed_users
 # Create your views here.
 from .models import Customer
 
