@@ -1,3 +1,4 @@
+from django.contrib.auth.models import Group
 from django.shortcuts import render, redirect
 from .forms import CreateUserForm
 from django.contrib import messages
@@ -21,7 +22,7 @@ def login_view(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('index')
+            return redirect('profile')
         else:
             messages.info(request, 'Username OR Password is incorrect')
     context = {}
@@ -41,9 +42,12 @@ def sign_up_view(request):
         form = CreateUserForm(request.POST)
         if form.is_valid():
             user = form.save()
-            name = form.cleaned_data['username']
+            username = form.cleaned_data['username']
+
             email = form.cleaned_data['email']
-            Customer.objects.create(user=user, name=name, email=email)
+            Customer.objects.create(user=user, email=email)
+            group = Group.objects.get(name='customer')
+            user.groups.add(group)
             messages.success(request, f'Account was created for {form.cleaned_data.get("username")}')
             return redirect('login')
     context = {'form': form}
