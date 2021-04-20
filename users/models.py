@@ -11,6 +11,7 @@ class Customer(models.Model):
 
 
 class ProfileInformation(models.Model):
+    customer = models.OneToOneField(Customer, on_delete=models.CASCADE, null=True, blank=True)
     name = models.CharField(max_length=255)
     surname = models.CharField(max_length=255, blank=True, null=True)
     phone_number = models.CharField(max_length=255, blank=True, null=True)
