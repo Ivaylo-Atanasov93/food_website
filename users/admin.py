@@ -5,7 +5,7 @@ from django.contrib import admin
 # from .forms import UserAdminCreationForm, UserAdminChangeForm
 
 # Register your models here.
-from .models import Customer
+from .models import Customer, ProfileInformation
 
 # User = get_user_model()
 #
@@ -39,4 +39,5 @@ from .models import Customer
 
 
 # admin.site.register(User)
+admin.site.register(ProfileInformation)
 admin.site.register(Customer)

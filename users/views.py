@@ -1,16 +1,34 @@
 from django.contrib.auth.models import Group
 from django.shortcuts import render, redirect
-from .forms import CreateUserForm
+from .forms import CreateUserForm, ProfileInformationForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from manjorno_v3.decorators import unauthenticated_user, allowed_users
 # Create your views here.
-from .models import Customer
+from .models import Customer, ProfileInformation
+
+
+@allowed_users(allowed_roles=['customer', 'delivery', 'admin'])
+def user_detail_view(request):
+    context = {}
+    print('Success')
+    customer = request.user.customer.user.customer
+    profile_info = customer.profileinformation
+    context = {'profile_info': profile_info}
+    return render(request, 'profile_details.html', context)
 
 
 @allowed_users(allowed_roles=['customer', 'delivery', 'admin'])
 def user_profile_view(request):
-    context = {}
+    customer = request.user.customer.user.customer
+    profile_info = customer.profileinformation
+    form = ProfileInformationForm(request.POST or None, instance=profile_info)
+    context = {'form': form}
+    if not profile_info.completed and form.is_valid():
+        form.save()
+        profile_info.completed = True
+        profile_info.save()
+        return redirect('details')
     return render(request, 'user.html', context)
 
 
@@ -48,6 +66,7 @@ def sign_up_view(request):
             Customer.objects.create(user=user, email=email)
             group = Group.objects.get(name='customer')
             user.groups.add(group)
+            ProfileInformation.objects.create(customer=user.customer)
             messages.success(request, f'Account was created for {form.cleaned_data.get("username")}')
             return redirect('login')
     context = {'form': form}

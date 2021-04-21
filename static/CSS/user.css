@@ -1,0 +1,12 @@
+.personal-info-form{
+    max-width: 500px;
+    margin: 30px;
+    padding: 20px;
+	border-radius: 10px;
+    background-color: #fafcb7;
+	box-shadow: 0 0 6px -4px #000000;
+}
+
+.label{
+    text-align: left;
+}
