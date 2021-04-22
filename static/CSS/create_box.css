@@ -1,0 +1,11 @@
+.config-box {
+    padding: 20px;
+    margin: 50px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 12px -4px #000000;
+    background-color: #fafcb7;
+}
+
+.config-box-btn {
+    margin-top: 50px;
+}

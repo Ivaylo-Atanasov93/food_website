@@ -1,0 +1,27 @@
+{% extends 'partials/main.html' %}
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'CSS/orders.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="order-history">
+        {% if orders %}
+            <h3>Order History</h3>
+            <hr>
+            <ul>
+                {% for order in orders %}
+                    <div class="order">
+                        <li>
+                            {{ order.transaction_id }}
+                        </li>
+                    </div>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <h3>You have no Order History yet...</h3>
+            <hr>
+        {% endif %}
+    </div>
+{% endblock %}

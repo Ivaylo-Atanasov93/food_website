@@ -5,8 +5,18 @@ from django.shortcuts import render
 import datetime
 
 # Create your views here.
+from manjorno_v3.decorators import allowed_users
 from orders.models import Order, DeliveryInformation
 from prices.models import DeliveryPrice
+
+
+@allowed_users(allowed_roles=['customer', 'delivery', 'admin'])
+def user_orders_view(request):
+    context = {}
+    user = request.user.customer.user
+    orders = user.order_set.filter(complete=True)
+    context['orders'] = orders
+    return render(request, 'orders.html', context)
 
 
 def cart(request):
@@ -77,4 +87,3 @@ def process_order(request):
     else:
         print('User is not logged in!')
     return JsonResponse('Payment complete!', safe=False)
-

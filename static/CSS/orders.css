@@ -1,0 +1,11 @@
+.order-history {
+    padding: 20px;
+    margin: 50px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 12px -4px #000000;
+    background-color: #4f868c;
+}
+
+hr {
+    border-top: 1px solid white;
+}

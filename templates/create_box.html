@@ -2,18 +2,22 @@
 {% load static %}
 
 {% block styles %}
-
+    <link rel="stylesheet" href="{% static 'CSS/create_box.css' %}">
 {% endblock %}
 
 {% block content %}
-    <form method="post" class="box-form" action={% url 'create_box' %}>
-        {% csrf_token %}
-        <div class="form-group">
-            {{ form.meal_size }}
-        </div>
-        <div class="form-group">
-            {{ form.number_of_meals }}
-        </div>
-        <button class="btn btn-success" type="submit">See your Box</button>
-    </form>
+    <div class="config-box">
+        <form method="post" class="box-form" action={% url 'create_box' %}>
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.meal_size }}
+            </div>
+            <div class="form-group">
+                {{ form.number_of_meals }}
+            </div>
+            <center>
+                <button class="btn btn-success config-box-btn" type="submit">See your Box</button>
+            </center>
+        </form>
+    </div>
 {% endblock %}
