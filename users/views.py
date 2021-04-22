@@ -12,8 +12,10 @@ from .models import Customer, ProfileInformation
 def user_detail_view(request):
     customer = request.user.customer.user.customer
     profile_info = customer.profileinformation
-    context = {'profile_info': profile_info}
-    return render(request, 'profile_details.html', context)
+    if profile_info.completed:
+        context = {'profile_info': profile_info}
+        return render(request, 'profile_details.html', context)
+    return redirect('profile_update')
 
 
 @allowed_users(allowed_roles=['customer', 'delivery', 'admin'])
@@ -21,8 +23,6 @@ def user_profile_view(request):
     context = {}
     customer = request.user.customer.user.customer
     profile_info, create = ProfileInformation.objects.update_or_create(customer=customer)
-    # if profile_info.completed:
-    #     return redirect('profile_details')
     form = ProfileInformationForm(request.POST or None, instance=profile_info)
     if form.is_valid():
         form.save()
@@ -42,7 +42,7 @@ def login_view(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('profile_update')
+            return redirect('profile_details')
         else:
             messages.info(request, 'Username OR Password is incorrect')
     context = {}
@@ -68,6 +68,7 @@ def sign_up_view(request):
             Customer.objects.create(user=user, email=email)
             group = Group.objects.get(name='customer')
             user.groups.add(group)
+            ProfileInformation.objects.create(customer=user.customer)
             messages.success(request, f'Account was created for {form.cleaned_data.get("username")}')
             return redirect('login')
     context = {'form': form}

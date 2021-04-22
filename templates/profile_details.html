@@ -2,19 +2,25 @@
 {% load static %}
 
 {% block styles %}
-
+    <link rel="stylesheet" href="{% static 'CSS/profile_details.css' %}">
 {% endblock %}
 
 {% block content %}
-    <h3>{{ profile_info.name }}</h3>
-    <h3>{{ profile_info.surname }}</h3>
-    <h3>{{ profile_info.phone_number }}</h3>
-    <h3>{{ profile_info.email }}</h3>
-    <h3>{{ profile_info.gender }}</h3>
-    <h3>{{ profile_info.date_of_birth }}</h3>
-    <a href="{% url 'profile_update' %}">
-        <button class="btn btn-success">
-            Update Profile Information
-        </button>
-    </a>
+    <div class="profile_details">
+        <h3>Profile Information</h3>
+        <hr>
+        <h6>Name: {{ profile_info.name }}</h6>
+        <h6>Surname: {{ profile_info.surname }}</h6>
+        <h6>Phone Number: {{ profile_info.phone_number }}</h6>
+        <h6>E-mail: {{ profile_info.email }}</h6>
+        <h6>Gender: {{ profile_info.gender }}</h6>
+        <h6>Date of birth: {{ profile_info.date_of_birth }}</h6>
+        <center>
+            <a href="{% url 'profile_update' %}">
+                <button class="btn btn-success profile-update-btn">
+                    Update Profile Information
+                </button>
+            </a>
+        </center>
+    </div>
 {% endblock %}

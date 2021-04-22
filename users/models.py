@@ -8,7 +8,7 @@ class Customer(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
     email = models.EmailField()
 
-    def __repr__(self):
+    def __str__(self):
         return self.email
 
 
