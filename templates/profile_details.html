@@ -6,5 +6,15 @@
 {% endblock %}
 
 {% block content %}
-    <h3>User Details</h3>
+    <h3>{{ profile_info.name }}</h3>
+    <h3>{{ profile_info.surname }}</h3>
+    <h3>{{ profile_info.phone_number }}</h3>
+    <h3>{{ profile_info.email }}</h3>
+    <h3>{{ profile_info.gender }}</h3>
+    <h3>{{ profile_info.date_of_birth }}</h3>
+    <a href="{% url 'profile_update' %}">
+        <button class="btn btn-success">
+            Update Profile Information
+        </button>
+    </a>
 {% endblock %}
