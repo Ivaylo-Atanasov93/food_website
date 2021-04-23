@@ -22,6 +22,9 @@ def create_or_update_box(request):
             form.save()
             box.save()
             return redirect('recipes')
+        order = customer.order_set.filter(complete=False)[0]
+        cart_items = order.get_total_items
         context['form'] = form
+        context['cart_items'] = cart_items
         return render(request, 'create_box.html', context)
     return render(request, 'unauthenticated.html')

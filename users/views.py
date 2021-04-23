@@ -10,10 +10,15 @@ from .models import Customer, ProfileInformation
 
 @allowed_users(allowed_roles=['customer', 'delivery', 'admin'])
 def user_detail_view(request):
-    customer = request.user.customer.user.customer
+    context = {}
+    customer = request.user.customer
     profile_info = customer.profileinformation
+    user = customer.user
+    order = user.order_set.filter(complete=False)[0]
+    cart_items = order.get_total_items
+    context['cart_items'] = cart_items
     if profile_info.completed:
-        context = {'profile_info': profile_info}
+        context['profile_info'] = profile_info
         return render(request, 'profile_details.html', context)
     return redirect('profile_update')
 
@@ -21,7 +26,7 @@ def user_detail_view(request):
 @allowed_users(allowed_roles=['customer', 'delivery', 'admin'])
 def user_profile_view(request):
     context = {}
-    customer = request.user.customer.user.customer
+    customer = request.user.customer
     profile_info, create = ProfileInformation.objects.update_or_create(customer=customer)
     form = ProfileInformationForm(request.POST or None, instance=profile_info)
     if form.is_valid():
@@ -30,6 +35,10 @@ def user_profile_view(request):
         profile_info.completed = True
         profile_info.save()
         return redirect('profile_details')
+    user = customer.user
+    order = user.order_set.filter(complete=False)[0]
+    cart_items = order.get_total_items
+    context['cart_items'] = cart_items
     context['form'] = form
     return render(request, 'create_user_profile.html', context)
 

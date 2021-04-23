@@ -1,7 +1,7 @@
 import json
 
 from django.http import JsonResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 import datetime
 
 # Create your views here.
@@ -15,16 +15,22 @@ def user_orders_view(request):
     context = {}
     user = request.user.customer.user
     orders = user.order_set.filter(complete=True)
+    order = user.order_set.filter(complete=False)[0]
+    cart_items = order.get_total_items
+    context['cart_items'] = cart_items
     context['orders'] = orders
     return render(request, 'orders.html', context)
 
 
+@allowed_users(allowed_roles=['customer', 'delivery', 'admin'])
 def cart(request):
     if request.user.is_authenticated:
         customer = request.user.customer.user
         order, created = Order.objects.get_or_create(customer=customer, complete=False)
         items = order.orderitem_set.all()
         cart_items = order.get_total_items
+        if cart_items == 0:
+            return redirect('create_box')
         delivery_price = DeliveryPrice.objects.all()[0].price
     else:
         items = []
