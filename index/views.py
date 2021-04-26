@@ -6,8 +6,12 @@ def index(request):
     context = {}
     if request.user.is_authenticated:
         user = request.user
-        orders = user.order_set.filter(complete=False)[0]
-        cart_items = orders.get_total_items
+        if user.order_set.filter(complete=False):
+            orders = user.order_set.filter(complete=False)[0]
+            cart_items = orders.get_total_items
+        else:
+            cart_items = 0
+
         context['cart_items'] = cart_items
     else:
         order = {'get_total_items': 0, 'get_total_price': 0}
