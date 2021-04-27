@@ -1,0 +1,15 @@
+{% extends 'partials/main.html' %}
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'CSS/recipe_details.css' %}">
+{% endblock %}
+
+{% block content %}
+    <center>
+        <a href="{% url 'recipes' %}">
+            <button class="btn btn-success">Back to all recipes</button>
+        </a>
+    </center>
+    <h3>{{ recipe.name }}</h3>
+{% endblock %}

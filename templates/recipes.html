@@ -62,7 +62,7 @@
                                 Add to box
                             {% endif %}
                         </button>
-                        <a class="btn btn-outline-success" href="#">View</a>
+                        <a class="btn btn-outline-success" href="{% url 'recipe_details' meal.id%}">View</a>
                     {% endif %}
                     <p style="margin-top: 30px"><strong>{{ meal.cooking_time }} min</strong></p>
                 </div>

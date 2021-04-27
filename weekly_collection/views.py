@@ -10,6 +10,14 @@ from recipes.models import Recipe
 from weekly_collection.models import WeeklyCollection
 
 
+def recipe_details(request, pk):
+    context = {
+        'recipe': Recipe.objects.get(pk=pk)
+    }
+    return render(request, 'recipe_details.html', context)
+
+
+
 def recipes(request):
     if request.user.is_authenticated:
         customer = request.user.customer.user
