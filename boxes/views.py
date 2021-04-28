@@ -22,7 +22,7 @@ def create_or_update_box(request):
             form.save()
             box.save()
             return redirect('recipes')
-        order = customer.order_set.filter(complete=False)[0]
+        order, create = Order.objects.get_or_create(customer=customer, complete=False)
         cart_items = order.get_total_items
         context['form'] = form
         context['cart_items'] = cart_items
