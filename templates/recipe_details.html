@@ -11,5 +11,30 @@
             <button class="btn btn-success">Back to all recipes</button>
         </a>
     </center>
-    <h3>{{ recipe.name }}</h3>
+    <center>
+        <div class="col-lg-12">
+            <img class="meal-picture" src="{{ recipe.meal_picture.url }}">
+            <div class="box-element product">
+                <h1>{{ recipe.name }}</h1>
+                <h2>with {{ recipe.main_ingredients }}</h2>
+                <hr>
+                <h3>Description</h3>
+                <h5>{{ recipe.description }}</h5>
+                <h6 class="specification">Type: {{ recipe.type }}</h6>
+                <h6 class="specification">Difficulty: {{ recipe.difficulty }}</h6>
+                <h6 class="specification">Cooking time: {{ recipe.cooking_time }} mins</h6>
+                <ul class="ingredients">
+                    {% for ingredient in ingredients %}
+                        <div class="ingredient-display">
+                            <li class="list-item">
+                                <img class="ingredient-picture" src="{{ ingredient.imageURL }}">
+                                <p>{{ ingredient.name }}</p>
+                            </li>
+                        </div>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </center>
+
 {% endblock %}

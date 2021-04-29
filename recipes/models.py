@@ -17,7 +17,7 @@ class Ingredient(models.Model):
             url = ''
         return url
 
-    def __str__(self):
+    def __repr__(self):
         return self.name
 
 
@@ -28,9 +28,9 @@ class Recipe(models.Model):
         ('Hard', 'Hard'),
     ]
     TYPE = [
-        ('M&V', 'Meat and Veggie'),
-        ('VRN', 'Vegetarian'),
-        ('VGN', 'Vegan'),
+        ('Meat and Veggie', 'Meat and Veggie'),
+        ('Vegetarian', 'Vegetarian'),
+        ('Vegan', 'Vegan'),
     ]
     name = models.CharField(max_length=255)
     main_ingredients = models.CharField(max_length=300)
@@ -52,7 +52,6 @@ class Recipe(models.Model):
     def imageURL(self):
         try:
             url = self.meal_picture.url
-            print(url)
         except:
             url = '/images/img_placeholder.png'
         return url

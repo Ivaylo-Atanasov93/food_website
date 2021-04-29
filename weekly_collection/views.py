@@ -6,16 +6,20 @@ import json
 
 from boxes.models import Box, ChoseMeals
 from orders.models import Order, OrderItem
-from recipes.models import Recipe
+from recipes.models import Recipe, Ingredient
 from weekly_collection.models import WeeklyCollection
 
 
 def recipe_details(request, pk):
+    recipe = Recipe.objects.get(pk=pk)
+    added_ingredients = recipe.addingredient_set.all()
+    ingredient_names = [added_ingredient.ingredient for added_ingredient in added_ingredients]
+    ingredients = [Ingredient.objects.get(name=ingredient_names[i]) for i in range(len(ingredient_names))]
     context = {
-        'recipe': Recipe.objects.get(pk=pk)
+        'recipe': recipe,
+        'ingredients': ingredients
     }
     return render(request, 'recipe_details.html', context)
-
 
 
 def recipes(request):

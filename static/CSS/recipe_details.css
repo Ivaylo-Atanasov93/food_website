@@ -1,0 +1,21 @@
+.meal-picture{
+    max-width: 1080px;
+}
+
+.specification{
+    display: inline-block;
+    margin: 40px;
+}
+
+.ingredient-display{
+    display: inline-block;
+}
+
+.list-item{
+    list-style: none;
+}
+
+.ingredient-picture{
+    max-width: 70px;
+    max-height: 50px;
+}
