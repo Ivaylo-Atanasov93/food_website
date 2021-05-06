@@ -8,10 +8,12 @@ from django.views.generic import DetailView
 
 from boxes.models import Box
 from boxes.forms import BoxForm
+from manjorno_v3.decorators import allowed_users
 from orders.models import Order
 from recipes.models import Recipe
 
 
+@allowed_users(allowed_roles=['customer', 'delivery', 'admin'])
 def create_or_update_box(request):
     if request.user.is_authenticated:
         context = {}

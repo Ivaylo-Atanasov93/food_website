@@ -46,7 +46,7 @@ def cart(request):
     }
     return render(request, 'cart.html', context)
 
-
+@allowed_users(allowed_roles=['customer', 'delivery', 'admin'])
 def checkout(request):
     if request.user.is_authenticated:
         customer = request.user.customer.user

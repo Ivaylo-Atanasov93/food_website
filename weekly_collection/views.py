@@ -5,11 +5,13 @@ import json
 # Create your views here.
 
 from boxes.models import Box, ChoseMeals
+from manjorno_v3.decorators import allowed_users
 from orders.models import Order, OrderItem
 from recipes.models import Recipe, Ingredient
 from weekly_collection.models import WeeklyCollection
 
 
+@allowed_users(allowed_roles=['customer', 'delivery', 'admin'])
 def recipe_details(request, pk):
     recipe = Recipe.objects.get(pk=pk)
     added_ingredients = recipe.addingredient_set.all()
