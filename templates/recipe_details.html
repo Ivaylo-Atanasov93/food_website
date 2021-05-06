@@ -8,7 +8,7 @@
 {% block content %}
     <center>
         <a href="{% url 'recipes' %}">
-            <button class="btn btn-success">Back to all recipes</button>
+            <button class="btn btn-success back-button">Back to all recipes</button>
         </a>
     </center>
     <center>
@@ -29,6 +29,26 @@
                             <li class="list-item">
                                 <img class="ingredient-picture" src="{{ ingredient.imageURL }}">
                                 <p>{{ ingredient.name }}</p>
+                            </li>
+                        </div>
+                    {% endfor %}
+                </ul>
+                <ul>
+                    {% for step in steps %}
+                        <div class="step-display">
+                            <li>
+                                <div class="step-picture">
+                                    {% if step.image %}
+                                        <img class="step-picture thumbnail" src="{{ step.image.url }}">
+                                    {% else %}
+                                        <img class="step-picture thumbnail" src="{% static 'images/img_placeholder.png' %}">
+                                    {% endif %}
+                                </div>
+                                <div class="step-description">
+                                    <p>
+                                        {{ step.description }}
+                                    </p>
+                                </div>
                             </li>
                         </div>
                     {% endfor %}

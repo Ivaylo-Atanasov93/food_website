@@ -15,9 +15,11 @@ def recipe_details(request, pk):
     added_ingredients = recipe.addingredient_set.all()
     ingredient_names = [added_ingredient.ingredient for added_ingredient in added_ingredients]
     ingredients = [Ingredient.objects.get(name=ingredient_names[i]) for i in range(len(ingredient_names))]
+    recipe_steps = recipe.step_set.all()
     context = {
         'recipe': recipe,
-        'ingredients': ingredients
+        'ingredients': ingredients,
+        'steps': recipe_steps,
     }
     return render(request, 'recipe_details.html', context)
 

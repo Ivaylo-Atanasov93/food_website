@@ -19,3 +19,17 @@
     max-width: 70px;
     max-height: 50px;
 }
+
+.step-display{
+    list-style: none;
+    margin: 10px;
+    text-align: left;
+}
+
+.step-description, .step-picture{
+    display: inline-block;
+}
+
+.step-picture{
+    max-width: 300px;
+}
